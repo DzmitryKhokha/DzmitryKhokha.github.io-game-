@@ -13,20 +13,20 @@ const logsArray = []; // массив брёвен, черепах, которы
 
 // картинки
 const background1 = new Image();
-background1.src = '/img/background1-7.png';
+background1.src = 'img/background1-7.png';
 
 const turtle = new Image();
-turtle.src = '/img/turtles-sprite.png';
+turtle.src = 'img/turtles-sprite.png';
 
 const log = new Image();
-log.src = '/img/log.png';
+log.src = 'img/log.png';
 
 const car = new Image();
-car.src = '/img/cars.png';
+car.src = 'img/cars.png';
 let numberOfCars = 3;
 
 const frogImage = new Image();
-frogImage.src = '/img/frog_spritesheet.png';
+frogImage.src = 'img/frog_spritesheet.png';
 
 function setLocalStorage() {
     localStorage.clear();
@@ -79,7 +79,7 @@ function initLogoImg() {
     let figure = document.createElement('figure');
     let img = document.createElement('img');
     img.className = 'frog';
-    img.src = '../img/green-frog.png';
+    img.src = 'img/green-frog.png';
     img.alt = 'frogger';
     figure.appendChild(img);
     return figure;
@@ -99,7 +99,7 @@ function initRulesLogo() {
     let rulesLogo = document.createElement('div');
     rulesLogo.className = 'rules-logo';
     let img = document.createElement('img');
-    img.src = '../img/little-frog.png';
+    img.src = 'img/little-frog.png';
     img.alt = 'little-frog';
     rulesLogo.appendChild(img);
     return rulesLogo;
