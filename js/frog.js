@@ -9,8 +9,6 @@ class Frog {
         this.x = canvas.width / 2 - this.width / 2;  //стартовое положение лягушки по х
         this.y = canvas.height - this.height - 40;  //стартовое положение лягушки по y
         this.moving = false;
-        // this.frameX = 0;
-        // this.frameY = 0;
     }
     update() {
         //прыгаем вверх

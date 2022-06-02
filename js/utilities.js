@@ -1,7 +1,4 @@
 'use strict'
-
-// import InputHandler from "../input.js";
-// new InputHandler();
 function animate() {
     ctx1.clearRect(0, 0, canvas.width, canvas.height);
     ctx2.clearRect(0, 0, canvas.width, canvas.height);
@@ -10,7 +7,7 @@ function animate() {
     ctx2.drawImage(background1, 0, 0 , canvas.width, canvas.height);
     frog.draw();
     frog.update();
-    handleObjects();
+    handleObstacles();
     handleScoreBoard();
     requestAnimationFrame(animate);
 }
@@ -41,12 +38,12 @@ function handleScoreBoard() {
     ctx4.fillText('Game Speed: ' + gameSpeed.toFixed(2), 380, 20);
 }
 
-//столкновения с машинами (first - это лягушка, second - машина)
-function  collision(first, second) {
-    return !( first.x > second.x + second.width ||
-                first.x + first.width < second.x ||
-                first.y > second.y + second.height ||
-                first.y + first.height < second.y);
+//столкновения с машинами
+function  collision(frog, car) {
+    return !( frog.x > car.x + car.width ||
+        frog.x + frog.width < car.x ||
+        frog.y > car.y + car.height ||
+        frog.y + frog.height < car.y);
 }
 
 //рестарт игры
@@ -63,10 +60,8 @@ function saveScore() {
     const requestURL = 'https://jsonplaceholder.typicode.com/users';
     let body;
     let ask = confirm('You crashed! Continue?');
-
     if (!ask) {
         let user = prompt('Введите имя: ', '');
-        const regExp = /^[a-zA-Zа-яёА-ЯЁ]+$/u;
         if (user !== '') {
            body = {
                name: user,
@@ -74,7 +69,6 @@ function saveScore() {
            }
             sendRequest('POST', requestURL, body)
                 .then(data => {
-                    console.log(data);
                     function addEntry() {
                         // Parse the JSON stored in allEntriesP
                         let existingEntries = JSON.parse(localStorage.getItem("Users"));
@@ -87,9 +81,7 @@ function saveScore() {
                         // Save allEntries back to local storage
                         existingEntries.push(entry);
                         localStorage.setItem("Users", JSON.stringify(existingEntries));
-                        console.log(existingEntries);
                         for (let i = 0; i < existingEntries.length; i++) {
-                            console.log(existingEntries[i]);
                             let userNm = document.getElementById('user-name');
                             let div2 = document.createElement('div');
                             div2.innerHTML = existingEntries[i].name;

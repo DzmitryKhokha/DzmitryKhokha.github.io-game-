@@ -206,29 +206,47 @@ function initAboutGamePage() {
 function initHistory() {
     let history = document.createElement('div');
     history.className = 'history';
+    history.appendChild(initHistoryHeading('history-heading'));
+    history.appendChild(initHistoryInfo('history-info'));
+    history.appendChild(initHistoryText('history-text'));
+    return history;
+}
+
+function initHistoryHeading(className) {
     let historyHeading = document.createElement('div');
-    historyHeading.className = 'history-heading';
-    let h2 = document.createElement('h2');
-    h2.textContent = 'About Game';
-    historyHeading.appendChild(h2);
+    historyHeading.className = className;
+    historyHeading.appendChild(initHistoryHeadingText('About Game'));
+    return historyHeading;
+}
+
+function initHistoryHeadingText(text) {
+    let headingText = document.createElement('h2');
+    headingText.textContent = text;
+    return headingText;
+}
+
+function initHistoryInfo(className) {
     let historyInfo = document.createElement('div');
-    historyInfo.className = 'history-info';
-    let h3 = document.createElement('h3');
-    h3.textContent = 'History';
-    historyInfo.appendChild(h3);
+    historyInfo.className = className;
+    historyInfo.appendChild(initHistoryHeadingText('History'));
+    return historyInfo;
+}
+
+function initHistoryText(className) {
     let historyText = document.createElement('div');
-    historyText.className = 'history-text';
-    let p = document.createElement('p');
-    p.textContent = '"Frogger - видеоигра жанра аркада-головоломка, разработанная компанией Konami и выпущенная ' +
+    historyText.className = className;
+    historyText.appendChild(initParagraph());
+    return historyText;
+}
+
+function initParagraph() {
+    let paragraphElement = document.createElement('p');
+    paragraphElement.textContent = '"Frogger - видеоигра жанра аркада-головоломка, разработанная компанией Konami и выпущенная ' +
         'компаниями Sega и Gremlin Industries для аркадных автоматов в июне 1981 года в Японии и в октябре того же ' +
         'года в Европе. Игра стала очень популярной и продолжает переиздаваться для многих игровых систем и ' +
         'компьютеров. Различные версии игры выходили и продолжают выходить на многих игровых системах и персональных ' +
         'компьютерах.';
-    historyText.appendChild(p);
-    history.appendChild(historyHeading);
-    history.appendChild(historyInfo);
-    history.appendChild(historyText);
-    return history;
+    return paragraphElement;
 }
 
 //Game-page init
@@ -239,6 +257,8 @@ function initGame() {
     wrapper.appendChild(initCanvas('canvas3', 'canvas3', 600, 600));
     wrapper.appendChild(initCanvas('canvas4', 'score-board', 600, 750));
     wrapper.appendChild(initButton(SwitchToMainPage));
+    wrapper.appendChild(initVolumeButton());
+    initAudio();
 }
 
 function initCanvas(id, className, width, height) {
@@ -248,4 +268,31 @@ function initCanvas(id, className, width, height) {
     canvas.width = width;
     canvas.height = height;
     return canvas;
+}
+
+function initVolumeButton() {
+    let buttonDiv = document.createElement('div');
+    buttonDiv.className = 'buttons';
+    let button = document.createElement('button');
+    button.className = 'btn-volume';
+    button.textContent = 'On/Off music';
+    button.id = 'audio-btn'
+    buttonDiv.appendChild(button);
+    return buttonDiv;
+}
+
+function initAudio() {
+    let audio = new Audio('../audio/sound.mp3');
+    audio.play();
+    audio.volume = 1;
+    let audioButton = document.getElementById('audio-btn');
+    audioButton.addEventListener("click", () => {
+        if (audio.paused) {
+            audio.play();
+            audioButton.style.backgroundColor = '#79c103';
+        } else {
+            audio.pause();
+            audioButton.style.backgroundColor = 'red';
+        }
+    })
 }

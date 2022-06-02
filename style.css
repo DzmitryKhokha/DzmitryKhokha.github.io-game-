@@ -202,6 +202,34 @@ canvas {
     text-align: justify;
 }
 
+.audio-player {
+    opacity: 60%;
+}
+
+.btn-volume {
+    position: absolute;
+    top: 90%;
+    display: block;
+    margin: 5px auto;
+    width: 90px;
+    text-align: center;
+    height: 40px;
+    border-radius: 5px;
+    font-family: 'Press Start 2P', cursive;
+    color: #304f02;
+    background-color: #79c103;
+    -webkit-box-shadow: 0 2px 2px 2px rgba(29,59,33,0.16);
+    box-shadow: 0 1px 1px 1px rgba(29, 59, 33, 0.1);
+}
+.btn-volume:hover {
+    cursor: pointer;
+    background-color: #769b3e;
+    color: #E8F6D0;
+    border-style: none;
+    -webkit-box-shadow: 0 4px 4px 3px rgba(29,59,33,0.53);
+    box-shadow: 0 4px 4px 2px rgba(29, 59, 33, 0.16);
+}
+
 @media (max-width: 1180px) {
     .wrapper {
         width: 500px;
@@ -247,6 +275,9 @@ canvas {
     }
     .user-score {
         width: 80px;
+    }
+    .audio-player {
+        width: 160px;
     }
 }
 
@@ -319,6 +350,9 @@ canvas {
     .user-score {
         width: 60px;
     }
+    .audio-player {
+        opacity: 50%;
+    }
 }
 
     @media (max-height: 390px) {
@@ -345,5 +379,9 @@ canvas {
         .frog {
             width: 200px;
             height: 200px;
+        }
+        .audio-player {
+            opacity: 60%;
+            width: 150px;
         }
     }

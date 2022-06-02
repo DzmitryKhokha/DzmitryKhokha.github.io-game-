@@ -5,10 +5,12 @@ function SwitchToStateFromURLHash() {
     let hash = window.location.hash;
     let State = decodeURIComponent(hash.substr(1));
 
-    if (State !== "")
+    if (State !== "") {
         State = JSON.parse(State);
-    else
+    }
+    else {
         State = {pageName: 'Main'};
+    }
     document.getElementById('wrapper').innerHTML = '';
 
     switch (State.pageName) {
